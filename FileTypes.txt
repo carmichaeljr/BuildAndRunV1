@@ -1,0 +1,71 @@
+Formatting rules:
+1) Every language must specify a extension.
+   The extension should include the period.
+   After the extension, include two semicolins
+2) For every language, you can define four attributes
+	2.1) The compiler path. This is the cmd that will be run to compile the program.
+	2.2) The execution path. This is the cmd that will be run to execute the program.
+	2.3) The output path. This is where all intermediate compilation steps are placed.
+	2.4) Wether or not a build file should be made. For languages that have multiple source code files, this is usually true.
+3) The compiler path, execution path, and output path can be set to null if it does not apply to the language.
+4) When specifing the compiler/execution/output path, you may use these flags:
+	4.1) <Compiler=Path to your compiler> 	The <Compiler> flag will set the compiler path.
+	4.2) <Arg=String>						The <Arg> flag will specify an argument that will be given to the compiler.
+5) When specifying a file path, put it in brackets, and specify flags inside them
+	5.1) When specifying a file path, you may use these flags in any combination:
+		 {FP:A}	The absolute file path to the file that is being compiled/executed.
+		 {FP:D}	The drive of the file that is being compiled/executed.
+		 {FP:R}	The relative file path of the file that is being compiled/executed.
+		 {FP:N}	The name of the file that is being compiled/executed.
+		 {FP:E}	The extension of the file that is being compiled/executed.
+6) The build file option should be either true or false.
+   The default setting if the supplied one is incorrect is false.
+   When a build file is used, all files placed in it will be appended to the argument list.
+
+.java::
+C:<Compiler=C:\Program Files\Java\jdk1.8.0_131\bin\javac.exe><Arg=-cp "{FP:DR};C:\Program Files\processing-3.3.5\core\library\core.jar\\"><Arg="{FP:A}">
+E:<Compiler=C:\Program Files\Java\jdk1.8.0_131\bin\java.exe><Arg=-cp "{FP:DR};C:\Program Files\processing-3.3.5\core\library\core.jar\\"><Arg="{FP:N}">
+O:null
+B:true
+
+.py::
+C:null
+E:<Compiler=C:\Program Files\Python36\python.exe><Arg=-u><Arg="{FP:A}">
+O:null
+B:true
+
+.html::
+C:null
+E:<Arg="{FP:A}">
+O:null
+B:false
+
+.ps1::
+C:null
+E:<Compiler=C:\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell.exe><Arg=-executionpolicy remotesigned><Arg=-File><Arg="{FP:A}">
+O:null
+B:false
+
+.pde::
+C:<Compiler=C:\Program Files\Processing\processing-3.3.5\processing-java.exe><Arg=--sketch="{FP:DR}\"><Arg=--output="{OP}"><Arg=--force><Arg=--build>
+E:<Compiler=C:\Program Files\Processing\processing-3.3.5\processing-java.exe><Arg=--sketch="{FP:DR}\"><Arg=--output="{OP}"><Arg=--force><Arg=--run>
+O:C:\Users\JackCarmichael\Documents\Programming\Processing\Temp Processing Sketches\TempSketch
+B:false
+
+.bat::
+C:null
+E:<Arg="{FP:A}">
+O:null
+B:false
+
+.c|.h::
+C:<Compiler=C:\MinGW\bin\gcc.exe><Arg=-Wall -g -o><Arg="{FP:DRN}.exe"><Arg="{FP:A}">
+E:<Arg="{FP:DRN}.exe">
+O:null
+B:true
+
+.cs::
+C:<Compiler=C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe><Arg="{FP:A}">
+E:<Arg="{FP:DRN}.exe">
+O:null
+B:true
