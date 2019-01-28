@@ -6,8 +6,8 @@ To run this tool, make sure you call the BuildAndRun.bat file, and **NOT** the B
 The possible arguments are shown below:
 
     BuildAndRun.bat [option][fileDir]
-    **OPTION** can be one of the following: 's','c','e', or 'ce'
+    OPTION can be one of the following: 's','c','e', or 'ce'
       - 's': Open settings for modification
       - 'c': Compile the given file
       - 'e': Execute the given file with the specified intrepreter
-      - 'ce': Commpile and then execute the given file
+      - 'ce': Commpile and then execute the given file only if compilation was successfull
